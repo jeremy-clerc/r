@@ -47,3 +47,6 @@ clean:
 
 release: test bundle install clean
 	$(info  Released version $(VERSION))
+
+fmt:
+	find ./ -name '*.go' -exec goimports -w {} \;
