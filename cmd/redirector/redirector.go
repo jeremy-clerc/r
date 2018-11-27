@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/jeremy-clerc/r/r"
+	"github.com/jeremy-clerc/r"
 )
 
 var version string
@@ -28,6 +28,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to open links file: %v", err)
 	}
+	defer f.Close()
+
 	rr, err := r.Load(f)
 	if err != nil {
 		log.Fatalf("failed to load content of links file: %v", err)

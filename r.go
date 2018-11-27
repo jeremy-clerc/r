@@ -11,7 +11,7 @@ import (
 	"sync"
 )
 
-var delimiter = []byte{'!'}
+const delimiter byte = '!'
 
 // R redirects shorcuts to defined URLs.
 type R struct {
@@ -39,7 +39,7 @@ func Load(input io.Reader) (*R, error) {
 	s := bufio.NewScanner(input)
 	for s.Scan() {
 		b := s.Bytes()
-		i := bytes.Index(b, delimiter)
+		i := bytes.IndexByte(b, delimiter)
 		if i == -1 || i-1 == len(b) {
 			log.Printf("invalid line %v", s.Text())
 			continue
